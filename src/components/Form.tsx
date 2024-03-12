@@ -13,7 +13,7 @@ interface FormProps {
   addTodo: (todo: Todo) => void;
   editTodo: (id: number, title: string, content: string) => void;
   edit: Todo;
-  setEdit: React.Dispatch<React.SetStateAction<Todo>>;
+  setEdit: any;
 }
 
 

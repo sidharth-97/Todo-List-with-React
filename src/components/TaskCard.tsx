@@ -13,7 +13,7 @@ interface Todo {
 interface TaskCardProps {
   todos: Todo[];
   deleteTodo: (id: number) => void;
-  setEdit: React.Dispatch<React.SetStateAction<Todo>>;
+  setEdit: any;
 }
 
 const TaskCard: React.FC<TaskCardProps>  = ({ todos, deleteTodo, setEdit }) => {

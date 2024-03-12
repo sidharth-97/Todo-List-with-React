@@ -3,7 +3,7 @@ import Button from "./UI/Button";
 import { toast } from "react-toastify";
 
 interface Todo {
-  id: number;
+  id?: any;
   title: string;
   content: string;
 }
@@ -12,7 +12,7 @@ interface EditTaskModalProps {
   isOpen: boolean;
   edit: Todo;
   editTodo: (id: number, title: string, content: string) => void;
-  setEdit: React.Dispatch<React.SetStateAction<Todo>>;
+  setEdit: any;
 }
 
 
@@ -60,8 +60,8 @@ const EditTaskModal: React.FC<EditTaskModalProps> = ({ isOpen, edit,editTodo,set
               className=" bg-Lblack border border-mark w-full"
               name=""
               id=""
-              cols="30"
-              rows="10"
+              cols={30}
+              rows={10}
               placeholder="Max input"
             >
             </textarea>

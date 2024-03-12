@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        Lblack: "#1B1A17",
+        Lblack: "#1F1E1B",
+        Dblack:"#1B1A17",
         txtclr: "#F0E3CA",
         markh: "#FF8303",
         mark:"#A35709"

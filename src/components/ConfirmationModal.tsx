@@ -1,20 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import Button from "./UI/Button";
+import { MdEdit } from "react-icons/md";
+import { FaExclamation } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
-const ConfirmationModal = () => {
+
+interface Todo {
+  id: number;
+  title: string;
+  content: string;
+}
+
+interface ConfirmationModalProps {
+  todo: Todo;
+  deleteTodo: (id: number) => void;
+  setEdit: React.Dispatch<React.SetStateAction<Todo>>;
+}
+
+
+const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ todo, deleteTodo,setEdit}) => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [mobile, setMobile] = useState(false)
+  const [view,setView]=useState(false)
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
 
+  const handleYes = () => {
+    deleteTodo(todo.id)
+    toast.success("Deleted")
+  }
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setMobile(true);
+    }
+  }, []);
+
+  const handleEdit = () => {
+    console.log("here");
+    
+  setEdit(todo)
+}
+
   return (
     <div className="max-w-2xl mx-auto">
-      <button className="border text-center  border-mark rounded-md p-1">
-        <RxCross2 onClick={toggleModal} className=" text-lg text-mark" />
-      </button>
-
+     <button className="border text-center border-mark rounded-md p-1">
+      {mobile && <RxCross2 onClick={toggleModal} className="text-lg text-mark" />}
+      {!mobile && (view ? (
+        <div className="flex gap-3">
+          <MdEdit onClick={handleEdit} />
+          <RxCross2 onClick={toggleModal} className="text-lg text-mark" />
+        </div>
+      ) : (
+        <FaExclamation onClick={() => setView(true)} />
+      ))}
+    </button>
       <div
         id="confirmation-modal"
         aria-hidden="true"
@@ -48,8 +90,9 @@ const ConfirmationModal = () => {
             <div className="w-full flex flex-col justify-center h-full items-center mb-10 gap-2">
               <h1> Delete this task?</h1>
               <div className="flex gap-3">
-                <Button text="Yes" />
-                <Button text="No" />
+                <div onClick={handleYes}> <Button text="Yes" /></div>
+               
+                <div onClick={toggleModal}><Button text="No"/></div>
               </div>
             </div>
           </div>

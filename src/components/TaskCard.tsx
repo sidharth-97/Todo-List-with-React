@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-import { RxCross2 } from 'react-icons/rx';
+import React from 'react';
 import ConfirmationModal from './ConfirmationModal';
-import useTodo from '../hooks/Data';
 
 
 interface Todo {

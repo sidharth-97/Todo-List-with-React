@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import useTodo from "../hooks/Data";
 import { toast } from "react-toastify";
 
 interface Todo {
